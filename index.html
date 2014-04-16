@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>HTTP 404 Not Found</TITLE>
+<STYLE>A:link {
+	FONT: 8pt/11pt verdana; COLOR: red
+}
+A:visited {
+	FONT: 8pt/11pt verdana; COLOR: #4e4e4e
+}
+</STYLE>
+
+<META http-equiv=Content-Type content="text-html; charset=Windows-1252">
+<SCRIPT> 
+
+function Homepage(){
+// in real bits, urls get returned to our script like this:
+// res://shdocvw.dll/http_404.htm#http://www.DocURL.com/bar.htm 
+
+	//For testing use DocURL = "res://shdocvw.dll/http_404.htm#https://www.microsoft.com/bar.htm"
+	DocURL = document.location.href;
+		
+	//this is where the http or https will be, as found by searching for :// but skipping the res://
+	protocolIndex=DocURL.indexOf("://",4);
+	
+	//this finds the ending slash for the domain server 
+	serverIndex=DocURL.indexOf("/",protocolIndex + 3);
+
+		//for the href, we need a valid URL to the domain. We search for the # symbol to find the begining 
+	//of the true URL, and add 1 to skip it - this is the BeginURL value. We use serverIndex as the end marker.
+	//urlresult=DocURL.substring(protocolIndex - 4,serverIndex);
+	BeginURL=DocURL.indexOf("#",1) + 1;
+	if (protocolIndex - BeginURL > 7)
+		urlresult=""
+	
+	urlresult=DocURL.substring(BeginURL,serverIndex);
+
+	//for display, we need to skip after http://, and go to the next slash
+	displayresult=DocURL.substring(protocolIndex + 3 ,serverIndex);
+
+	// Security precaution: must filter out "urlResult" and "displayresult"
+	forbiddenChars = new RegExp("[<>\'\"]", "g");	// Global search/replace
+	urlresult = urlresult.replace(forbiddenChars, "");
+	displayresult = displayresult.replace(forbiddenChars, "");
+
+	document.write('<A target=_top HREF="' + urlresult + '">' + displayresult + "</a>");
+
+}
+function doSearch()
+{
+    saOC.NavigateToDefaultSearch();
+}
+
+function initPage() 
+{
+    document.body.insertAdjacentHTML("afterBegin","<object id=saOC CLASSID='clsid:B45FF030-4447-11D2-85DE-00C04FA35C89' HEIGHT=0 width=0></object>");
+}
+
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY bgColor=white onload=initPage()>
+<TABLE cellSpacing=5 cellPadding=3 width=400>
+  <TBODY>
+  <TR>
+    <TD id=tableProps vAlign=top align=left><IMG id=pagerrorImg height=33 
+      src="D:\0Websites\HTTP 404 Not Found_files\resAD0(1).tmp" width=25></TD>
+    <TD id=tableProps2 vAlign=center align=left width=360>
+      <H1 id=errortype style="FONT: 13pt/15pt verdana; COLOR: black"><SPAN 
+      id=errorText>The page cannot be found</SPAN></H1></TD></TR>
+  <TR>
+    <TD id=tablePropsWidth width=400 colSpan=2><FONT 
+      style="FONT: 8pt/11pt verdana; COLOR: black">The page you are looking for 
+      might have been removed, had its name changed, or is temporarily 
+      unavailable.</FONT></TD></TR>
+  <TR>
+    <TD id=tablePropsWidth2 width=400 colSpan=2><FONT id=LID1 
+      style="FONT: 8pt/11pt verdana; COLOR: black">
+      <HR color=#c0c0c0 noShade>
+
+      <P id=LID2>Please try the following:</P>
+      <UL>
+        <LI id=list1>If you typed the page address in the Address bar, make sure 
+        that it is spelled correctly.<BR>
+        <LI id=list2>Open the
+        <SCRIPT> Homepage(); </SCRIPT>
+         home page, and then look for links to the information you want. 
+        <LI id=list3>Click the <A href="javascript:history.back(1)"><IMG 
+        src="D:\0Websites\HTTP 404 Not Found_files\resAD1(1).tmp" border=0 
+        valign="bottom"> Back</A> button to try another link. 
+        <LI id=list4>Click <A href="javascript:doSearch()"><IMG height=16 
+        alt="search.gif (114 bytes)" 
+        src="D:\0Websites\HTTP 404 Not Found_files\resAD2(1).tmp" width=16 
+        align=center border=0> Search</A> to look for information on the 
+        Internet. </LI></UL>
+      <P><BR></P>
+      <H2 id=ietext style="FONT: 8pt/11pt verdana; COLOR: black">HTTP 404 - File 
+      not found<BR>Internet Explorer 
+<BR></H2></FONT></TD></TR></TBODY></TABLE></BODY></HTML>
